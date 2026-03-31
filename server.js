@@ -30,9 +30,9 @@ const s3 = new S3Client({
   region: "auto",
   endpoint: "https://4c67128f9a2e5c9cf667ec7e309d3f95.r2.cloudflarestorage.com",
   credentials: {
-    accessKeyId: "30542df27308f47060ce747ef9dc21a1",
-    secretAccessKey: "d6a68e308db2141e8a378accce1dae307f9ca9b008c924e1a2299bc1a19d8ad4"
-  }
+  accessKeyId: process.env.R2_ACCESS_KEY,
+  secretAccessKey: process.env.R2_SECRET_KEY
+}
 });
 
 const BUCKET = "interviewdata";
@@ -181,6 +181,8 @@ app.use((req, res) => {
 });
 
 // ====== 启动 ======
-app.listen(3000, () => {
-  console.log("服务器运行：http://localhost:3000");
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log("服务器运行在端口:", PORT);
 });
